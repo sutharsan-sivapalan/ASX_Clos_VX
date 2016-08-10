@@ -3,7 +3,7 @@
 ###################################
       
 groups = {
-  "spine" => ["spine1", "spine2" 
+  "spine" => ["spine1", "spine2"], 
   "leaf" => ["leaf1", "leaf2", "leaf3", "leaf4"],
   "servers" => ["host1", "host2"],
   "networking:children" => ["spine", "leaf"]
@@ -57,8 +57,8 @@ Vagrant.configure(2) do |config|
         spine2.vm.network "private_network", virtualbox__intnet: "s2l2"
         spine2.vm.network "private_network", virtualbox__intnet: "s2l3"
         spine2.vm.network "private_network", virtualbox__intnet: "s2l4"
-        spine2.vm.network "private_network", virtualbox__intnet: "s2s11"
-        spine2.vm.network "private_network", virtualbox__intnet: "s2s12"
+        spine2.vm.network "private_network", virtualbox__intnet: "s1s21"
+        spine2.vm.network "private_network", virtualbox__intnet: "s1s22"
 
         spine2.vm.provision "ansible" do |ansible|
           ansible.playbook = "provisioning/playbook.yml"
@@ -185,7 +185,6 @@ Vagrant.configure(2) do |config|
           v.customize ["modifyvm", :id, "--nicpromisc4", "allow-vms"]
           v.customize ["modifyvm", :id, "--nicpromisc5", "allow-vms"]
           v.customize ["modifyvm", :id, "--nicpromisc6", "allow-vms"]
-        end
         end
     end
 
